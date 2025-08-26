@@ -11,15 +11,21 @@ interface BoostSectionProps {
 }
 
 export const BoostSection = ({ user, onUpgrade, onOpenRank }: BoostSectionProps) => {
-  const miningSpeedCost = gameLogic.getBoostCost("miningSpeed", user.boosts.miningSpeedLevel)
-  const claimTimeCost = gameLogic.getBoostCost("claimTime", user.boosts.claimTimeLevel)
-  const miningRateCost = gameLogic.getBoostCost("miningRate", user.boosts.miningRateLevel)
-  const { rank, icon } = gameLogic.calculateRank(user.totalEarned)
+  // Prevent undefined errors with defaults
+  const boostsData = user.boosts || { miningSpeedLevel: 1, claimTimeLevel: 1, miningRateLevel: 1 }
+
+  const miningSpeedCost = gameLogic.getBoostCost("miningSpeed", boostsData.miningSpeedLevel)
+  const claimTimeCost = gameLogic.getBoostCost("claimTime", boostsData.claimTimeLevel)
+  const miningRateCost = gameLogic.getBoostCost("miningRate", boostsData.miningRateLevel)
+  const { rank, icon } = gameLogic.calculateRank(user.totalEarned || 0)
 
   // Calculate current values
   const currentMiningRate = user.miningRate || GAME_CONFIG.BASE_MINING_RATE
   const currentClaimTime = user.minClaimTime || GAME_CONFIG.MIN_CLAIM_TIME
-  const currentMiningSpeed = Math.pow(GAME_CONFIG.MINING_SPEED_MULTIPLIER, (user.boosts.miningSpeedLevel || 1) - 1)
+  const currentMiningSpeed = Math.pow(
+    GAME_CONFIG.MINING_SPEED_MULTIPLIER,
+    (boostsData.miningSpeedLevel || 1) - 1
+  )
 
   const boosts = [
     {
@@ -27,9 +33,9 @@ export const BoostSection = ({ user, onUpgrade, onOpenRank }: BoostSectionProps)
       title: "Mining Speed",
       description: "Increase mining efficiency",
       icon: <Zap className="w-5 h-5" />,
-      level: user.boosts.miningSpeedLevel,
+      level: boostsData.miningSpeedLevel,
       current: `${currentMiningSpeed.toFixed(1)}x`,
-      next: gameLogic.getNextBoostValue("miningSpeed", user.boosts.miningSpeedLevel, user),
+      next: gameLogic.getNextBoostValue("miningSpeed", boostsData.miningSpeedLevel, user),
       cost: miningSpeedCost,
       onUpgrade: () => onUpgrade("miningSpeed"),
     },
@@ -38,9 +44,9 @@ export const BoostSection = ({ user, onUpgrade, onOpenRank }: BoostSectionProps)
       title: "Claim Time",
       description: "Reduce minimum claim time",
       icon: <Clock className="w-5 h-5" />,
-      level: user.boosts.claimTimeLevel,
+      level: boostsData.claimTimeLevel,
       current: gameLogic.formatTime(currentClaimTime),
-      next: gameLogic.getNextBoostValue("claimTime", user.boosts.claimTimeLevel, user),
+      next: gameLogic.getNextBoostValue("claimTime", boostsData.claimTimeLevel, user),
       cost: claimTimeCost,
       onUpgrade: () => onUpgrade("claimTime"),
     },
@@ -49,9 +55,9 @@ export const BoostSection = ({ user, onUpgrade, onOpenRank }: BoostSectionProps)
       title: "Mining Rate",
       description: "Increase DRX per second",
       icon: <TrendingUp className="w-5 h-5" />,
-      level: user.boosts.miningRateLevel,
+      level: boostsData.miningRateLevel,
       current: `${gameLogic.formatNumberPrecise(currentMiningRate)}/s`,
-      next: gameLogic.getNextBoostValue("miningRate", user.boosts.miningRateLevel, user),
+      next: gameLogic.getNextBoostValue("miningRate", boostsData.miningRateLevel, user),
       cost: miningRateCost,
       onUpgrade: () => onUpgrade("miningRate"),
     },
@@ -69,7 +75,7 @@ export const BoostSection = ({ user, onUpgrade, onOpenRank }: BoostSectionProps)
             <div>
               <h2 className="text-lg font-bold text-white font-display">Mining Boosts</h2>
               <p className="text-gray-400 text-sm">Upgrade mining power</p>
-        <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center text-white shadow-lg">
+            </div>
           </div>
         </div>
 
@@ -135,7 +141,5 @@ export const BoostSection = ({ user, onUpgrade, onOpenRank }: BoostSectionProps)
         ))}
       </div>
     </div>
-  )
-}
   )
 }
