@@ -73,9 +73,9 @@ export const MissionSection = ({
         <Image
           src={mission.img}
           alt={mission.title}
-          width={32}
-          height={32}
-          className="w-5 h-5 rounded-full object-cover border border-white/20"
+          width={40}
+          height={40}
+          className="w-10 h-10 rounded-full object-cover border border-white/20"
         />
       )
     }
@@ -83,13 +83,13 @@ export const MissionSection = ({
     switch (mission.type) {
       case "join_channel":
       case "join_group":
-        return <Users className="w-5 h-5" />
+        return <Users className="w-10 h-10" />
       case "url_timer":
-        return <Clock className="w-5 h-5" />
+        return <Clock className="w-10 h-10" />
       case "promo_code":
-        return <Code className="w-5 h-5" />
+        return <Code className="w-10 h-10" />
       default:
-        return <Target className="w-5 h-5" />
+        return <Target className="w-10 h-10" />
     }
   }
 
@@ -267,7 +267,7 @@ export const MissionSection = ({
                 }`}
               >
                 {/* Mission Icon */}
-                <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
                   {getMissionIcon(mission)}
                 </div>
 
@@ -325,14 +325,14 @@ export const MissionSection = ({
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-700/30 sticky top-0 bg-gray-900/95 backdrop-blur-md">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center text-2xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center text-3xl shadow-lg">
                   {selectedMissionData.img ? (
                     <Image
                       src={selectedMissionData.img}
                       alt={selectedMissionData.title}
-                      width={32}
-                      height={32}
-                      className="w-8 h-8 rounded-full object-cover border border-white/20"
+                      width={40}
+                      height={40}
+                      className="w-10 h-10 rounded-full object-cover border border-white/20"
                     />
                   ) : (
                     getMissionIcon(selectedMissionData)

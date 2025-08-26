@@ -135,7 +135,7 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
               position: "relative",
               marginBottom: "16px",
               width: "100%",
-              maxWidth: "288px",
+              maxWidth: "320px",
             }}
           >
             <div
@@ -143,7 +143,7 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
                 position: "relative",
                 width: "100%",
                 aspectRatio: "1",
-                maxWidth: "220px",
+                maxWidth: "280px",
                 margin: "0 auto",
               }}
             >
@@ -199,17 +199,18 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
               <div 
                 style={{
                   position: "absolute",
-                  bottom: "-20px",
+                  bottom: "-30px",
                   left: "50%",
                   transform: "translateX(-50%)",
-                  background: "linear-gradient(135deg, #fbbf24 0%, #f97316 100%)",
+                  background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
                   color: "white",
-                  padding: "8px 16px",
+                  padding: "10px 20px",
                   borderRadius: "9999px",
-                  fontSize: "14px",
+                  fontSize: "16px",
                   fontWeight: "bold",
-                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                  boxShadow: "0 8px 25px -5px rgba(16, 185, 129, 0.4)",
                   zIndex: 30,
+                  border: "2px solid rgba(16, 185, 129, 0.3)",
                 }}
                 className="animate-pulse"
               >
@@ -232,10 +233,14 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
           >
             <p
               style={{
-                fontSize: "24px",
+                fontSize: "28px",
                 fontWeight: "900",
                 textAlign: "center",
                 fontFamily: "monospace",
+                background: "linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                textShadow: "0 2px 4px rgba(0,0,0,0.3)",
               }}
             >
               <span>{gameLogic.formatNumber(currentRewards)}</span> DRX
@@ -244,7 +249,9 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "6px",
+                gap: "8px",
+                justifyContent: "center",
+                flexWrap: "wrap",
               }}
             >
               <svg
@@ -254,8 +261,8 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
                 viewBox="0 0 16 16"
                 style={{
                   opacity: 0.6,
-                  width: "12px",
-                  height: "12px",
+                  width: "14px",
+                  height: "14px",
                 }}
                 height="1em"
                 width="1em"
@@ -263,14 +270,17 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
               >
                 <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
               </svg>
-              <p style={{ fontWeight: "bold" }}>{gameLogic.formatNumberPrecise(user.miningRate || 0.001)}/s ⚡️️</p>
+              <p style={{ fontWeight: "bold", fontSize: "16px", color: "#10b981" }}>{gameLogic.formatNumberPrecise(user.miningRate || 0.001)}/s ⚡️️</p>
               {user.isMining && timeLeft > 0 && (
                 <span
                   style={{
-                    marginLeft: "8px",
-                    fontSize: "14px",
+                    fontSize: "16px",
                     color: "#06b6d4",
                     fontWeight: "bold",
+                    background: "rgba(6, 182, 212, 0.1)",
+                    padding: "4px 8px",
+                    borderRadius: "8px",
+                    border: "1px solid rgba(6, 182, 212, 0.3)",
                   }}
                 >
                   {formatTime(timeLeft)}
@@ -279,10 +289,13 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
               {user.isMining && canClaim && (
                 <span
                   style={{
-                    marginLeft: "8px",
-                    fontSize: "14px",
+                    fontSize: "16px",
                     color: "#10b981",
                     fontWeight: "bold",
+                    background: "rgba(16, 185, 129, 0.1)",
+                    padding: "4px 8px",
+                    borderRadius: "8px",
+                    border: "1px solid rgba(16, 185, 129, 0.3)",
                   }}
                   className="animate-pulse"
                 >
@@ -298,22 +311,23 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
               className="gradient-bg"
               style={{
                 width: "100%",
-                maxWidth: "288px",
-                padding: "12px",
+                maxWidth: "320px",
+                padding: "16px",
                 borderRadius: "16px",
                 fontWeight: "bold",
-                fontSize: "16px",
+                fontSize: "18px",
                 transition: "all 0.3s",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "8px",
+                gap: "12px",
                 color: "#ffffff",
                 border: "none",
                 cursor: "pointer",
+                boxShadow: "0 8px 25px -5px rgba(6, 182, 212, 0.4)",
               }}
             >
-              <Play style={{ width: "16px", height: "16px" }} />
+              <Play style={{ width: "20px", height: "20px" }} />
               Start Mine
             </button>
           ) : (
@@ -323,16 +337,16 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
               className={canClaim ? "gradient-claim animate-pulse" : ""}
               style={{
                 width: "100%",
-                maxWidth: "288px",
-                padding: "12px",
+                maxWidth: "320px",
+                padding: "16px",
                 borderRadius: "16px",
                 fontWeight: "bold",
-                fontSize: "16px",
+                fontSize: "18px",
                 transition: "all 0.3s",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "8px",
+                gap: "12px",
                 color: "#ffffff",
                 border: "none",
                 cursor: canClaim ? "pointer" : "not-allowed",
@@ -340,9 +354,10 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
                   ? "linear-gradient(135deg, #fbbf24 0%, #f97316 100%)"
                   : "#374151",
                 opacity: canClaim ? 1 : 0.6,
+                boxShadow: canClaim ? "0 8px 25px -5px rgba(251, 191, 36, 0.4)" : "none",
               }}
             >
-              <Gift style={{ width: "16px", height: "16px" }} />
+              <Gift style={{ width: "20px", height: "20px" }} />
               {canClaim ? "Claim" : `Wait ${formatTime(timeLeft)}`}
             </button>
           )}
@@ -352,16 +367,20 @@ export const MiningSection = ({ user, onStartMining, onClaimRewards, onOpenRank 
             style={{
               marginTop: "24px",
               width: "100%",
-              maxWidth: "288px",
+              maxWidth: "320px",
+              borderRadius: "16px",
+              overflow: "hidden",
+              boxShadow: "0 8px 25px -5px rgba(0, 0, 0, 0.3)",
             }}
           >
             <img
               style={{
-                borderRadius: "12px",
                 width: "100%",
+                transition: "transform 0.3s ease",
               }}
+              className="hover:scale-105"
               src="https://mining-master.onrender.com//assets/banner-BH8QO14f.png"
-            src={bannerUrl}
+              alt="Mining Banner"
             />
           </div>
         </div>

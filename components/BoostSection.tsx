@@ -69,7 +69,7 @@ export const BoostSection = ({ user, onUpgrade, onOpenRank }: BoostSectionProps)
             <div>
               <h2 className="text-lg font-bold text-white font-display">Mining Boosts</h2>
               <p className="text-gray-400 text-sm">Upgrade mining power</p>
-            </div>
+        <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center text-white shadow-lg">
           </div>
         </div>
 
@@ -107,18 +107,18 @@ export const BoostSection = ({ user, onUpgrade, onOpenRank }: BoostSectionProps)
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-3 mb-4 p-3 bg-black/20 rounded-xl border border-gray-700/20">
+            <div className="grid grid-cols-3 gap-4 mb-4 p-4 bg-gradient-to-r from-black/30 to-gray-900/30 rounded-xl border border-gray-700/20 backdrop-blur-sm">
               <div className="text-center">
-                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wide mb-2">Current</p>
-                <p className="text-sm font-bold text-white">{boost.current}</p>
+                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wide mb-2">⚡ Current</p>
+                <p className="text-base font-bold text-green-400">{boost.current}</p>
               </div>
               <div className="text-center">
-                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wide mb-2">Next Level</p>
-                <p className="text-sm font-bold text-green-400">{boost.next}</p>
+                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wide mb-2">🚀 Next Level</p>
+                <p className="text-base font-bold text-blue-400">{boost.next}</p>
               </div>
               <div className="text-center">
-                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wide mb-2">Cost</p>
-                <p className="text-sm font-bold text-orange-400">{gameLogic.formatNumber(boost.cost)} DRX</p>
+                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wide mb-2">💰 Cost</p>
+                <p className="text-base font-bold text-orange-400">{gameLogic.formatNumber(boost.cost)} DRX</p>
               </div>
             </div>
 
@@ -135,5 +135,7 @@ export const BoostSection = ({ user, onUpgrade, onOpenRank }: BoostSectionProps)
         ))}
       </div>
     </div>
+  )
+}
   )
 }
